@@ -8,8 +8,6 @@ import router from './router';
 import axios from 'axios';
 import less from 'less'
 import './assets/css/global.css';
-Vue.use(less)
-
 
 Vue.use(ElementUI)
 
@@ -22,6 +20,7 @@ axios.interceptors.request.use(config=>{
 })
 // 封装全局axios
 Vue.prototype.$http = axios;
+Vue.use(less)
 
 Vue.config.produLKKxctionTip = false
 

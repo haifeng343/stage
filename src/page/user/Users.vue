@@ -131,7 +131,7 @@ export default {
   data() {
     // 校验邮箱
     var checkEmail = (rule, value, cb) => {
-      const regEmail = ''
+      const regEmail = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/;
       if (regEmail.test(value)) {
         return cb()
       }
@@ -139,7 +139,7 @@ export default {
     }
     // 校验手机号
     var checkMobile = (rule, value, cb) => {
-      const regMbole = ''
+      const regMbole = /^(13[0-9]|14[579]|15[0-3,5-9]|17[0135678]|18[0-9])\d{8}$/
       if (regMbole.test(value)) {
         return cb()
       }
