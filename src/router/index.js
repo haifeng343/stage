@@ -4,6 +4,7 @@ import Login from '../page/Login.vue';
 import Home from '../page/Home.vue';
 import Welcome from '../page/Welcome.vue';
 import Users from '../page/user/Users.vue';
+import UserInfo from '../page/user/userinfo.vue';
 import Roles from '../page/role/Roles.vue';
 
 Vue.use(Router)
@@ -34,6 +35,10 @@ const router = new Router({
         {
           path:'/roles',
           component:Roles
+        },
+        {
+          path:'/userinfo',
+          component:UserInfo
         }
       ]
     }
