@@ -9,7 +9,7 @@
       label-width="0px"
     >
       <h3 class="login_title">系统登录</h3>
-      <el-form-item>
+      <el-form-item prop="username">
         <el-input
           type="text"
           class="input1"
@@ -19,7 +19,7 @@
         ></el-input>
       </el-form-item>
 
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input
           type="password"
           class="input1"
@@ -41,28 +41,30 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: 'admin',
-        password: '000000'
+        username: '',
+        password: '',
       },
       loginRule: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
         ],
-        password: [{ required: true, message: '请输入密码', trigger: 'change' }]
-      }
+        password: [
+          { required: true, message: '请输入密码', trigger: 'change' },
+        ],
+      },
     }
   },
   methods: {
     onSubmit(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
+      this.$refs[formName].validate((valid) => {
+          if (valid) {
           this.$http
             .post('/api/xkspc/login', {
               user: this.ruleForm.username,
-              pwd: this.ruleForm.password
+              pwd: this.ruleForm.password,
             })
-            .then(res => {
+            .then((res) => {
               if (res.data.success == true) {
                 this.$message.success(res.data.message)
                 window.sessionStorage.setItem('token', res.data)
@@ -75,13 +77,13 @@ export default {
           console.log('false')
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>
 .poster {
-  background:url("../assets/img/login-bg.jpg") no-repeat;
+  background: url('../assets/img/login-bg.jpg') no-repeat;
   background-position: center;
   height: 100%;
   width: 100%;
@@ -96,7 +98,7 @@ body {
 .loginBtn {
   width: 100%;
   background: transparent;
-  color: #333;
+  color: #fff;
   border: 1px solid #eaeaea;
 }
 .login-container {
@@ -114,22 +116,17 @@ body {
   box-shadow: 0 0 25px #cac6c6;
   z-index: 9999;
 }
-.vedio {
-  width: 100%;
-  height: auto;
-}
-
-.el-input__inner {
-    background: transparent;
-  }
-.video-container{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
 .login_title {
   margin: 0px auto 40px auto;
   text-align: center;
   color: #505458;
+}
+</style>
+
+<style>
+
+.input1 input.el-input__inner {
+    background: transparent;
+    color: #ffffff;
 }
 </style>

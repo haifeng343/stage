@@ -10,7 +10,7 @@
     <el-card>
       <!-- <child :name="name" :page="pageIndex" :onShowDialog="add" :func="getData" ref="childRef"></child> -->
       <!-- 搜索添加区域 -->
-      <el-row :gutter="20"> 
+      <el-row :gutter="20">
         <el-col :span="7">
           <el-input
             placeholder="请输入内容"
@@ -28,7 +28,16 @@
       </el-row>
 
       <!-- 数据表格 -->
-      <el-table :data="tableData" height="600" border stripe>
+      <el-table
+        :data="tableData"
+        height="600"
+        border
+        stripe
+        v-loading="loading"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+      >
         <el-table-column type="index" width="50" fixed label="#"></el-table-column>
         <el-table-column prop="name" label="姓名" width="180"></el-table-column>
         <el-table-column prop="mobile" label="手机号" width="180"></el-table-column>
@@ -44,7 +53,15 @@
         <el-table-column prop="email" label="邮箱地址" width="200"></el-table-column>
         <el-table-column label="状态" width="180">
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.mg_status" @change="swichChange(scope.row)"></el-switch>
+            <el-switch
+              v-model="scope.row.mg_status"
+              active-text="是"
+              inactive-color="#BFBFBF"
+              inactive-text="否"
+              :active-value="true"
+              :inactive-value="false"
+              @change="swichChange(scope.row)"
+            ></el-switch>
           </template>
         </el-table-column>
         <el-table-column prop="date" label="创建时间"></el-table-column>
@@ -128,9 +145,9 @@
   </div>
 </template>
 <script>
-import child from '../../components/children.vue';
+import child from '../../components/children.vue'
 export default {
-  components:{child},
+  components: { child },
   data() {
     // 校验邮箱
     var checkEmail = (rule, value, cb) => {
@@ -149,28 +166,29 @@ export default {
       cb(new Error('请输入正确的手机号'))
     }
     return {
-      name:'2',
+      loading:true,
+      name: '2',
       keyword: '',
       addForm: {
         name: '',
         email: '',
         mobile: '',
-        pwd: ''
+        pwd: '',
       },
       addFormRules: {
         name: [
           { required: true, trigger: 'blur', message: '请输入用户名' },
-          { min: 3, max: 10, message: '用户名长度在3到10个字符之间' }
+          { min: 3, max: 10, message: '用户名长度在3到10个字符之间' },
         ],
         pwd: [{ required: true, trigger: 'blur', message: '请输入密码' }],
         email: [
           { required: true, trigger: 'blur', message: '请输入邮箱' },
-          { validator: checkEmail, trigger: 'blur' }
+          { validator: checkEmail, trigger: 'blur' },
         ],
         mobile: [
           { required: true, trigger: 'blur', message: '请输入手机号' },
-          { validator: checkMobile, trigger: 'blur' }
-        ]
+          { validator: checkMobile, trigger: 'blur' },
+        ],
       },
       addDialogVisible: false, //添加对话框的显示隐藏
 
@@ -178,22 +196,22 @@ export default {
         name: '',
         email: '',
         mobile: '',
-        pwd: ''
+        pwd: '',
       },
       editFormRules: {
         name: [
           { required: true, trigger: 'blur', message: '请输入用户名' },
-          { min: 3, max: 10, message: '用户名长度在3到10个字符之间' }
+          { min: 2, max: 10, message: '用户名长度在2到10个字符之间' },
         ],
         pwd: [{ required: true, trigger: 'blur', message: '请输入密码' }],
         email: [
           { required: true, trigger: 'blur', message: '请输入邮箱' },
-          { validator: checkEmail, trigger: 'blur' }
+          { validator: checkEmail, trigger: 'blur' },
         ],
         mobile: [
           { required: true, trigger: 'blur', message: '请输入手机号' },
-          { validator: checkMobile, trigger: 'blur' }
-        ]
+          { validator: checkMobile, trigger: 'blur' },
+        ],
       },
       editDialogVisible: false, //添加对话框的显示隐藏
       pageIndex: 1,
@@ -207,132 +225,145 @@ export default {
           address: '上海市普陀区金沙江路 1518 弄',
           type: 1,
           email: '82738273@qq.com',
-          mg_status: true
+          mg_status: true,
         },
         {
           id: 2,
           date: '2018-05-03',
-          name: '王小虎',
+          name: '张亮',
           mobile: '13700000000',
           address: '上海市普陀区金沙江路 1518 弄',
           type: 2,
-          email: '82738273@qq.com',
-          mg_status: true
+          email: '653432325@qq.com',
+          mg_status: true,
         },
         {
           id: 3,
           date: '2020-01-12',
           mobile: '13800000000',
-          name: '王小虎',
+          name: '陈晓',
           address: '上海市普陀区金沙江路 1518 弄',
           type: 3,
-          email: '82738273@qq.com',
-          mg_status: false
+          email: '3245657657@qq.com',
+          mg_status: false,
         },
         {
           id: 4,
           date: '2019-07-25',
-          name: '王小虎',
+          name: '赵兵',
           mobile: '15900000000',
           address: '上海市普陀区金沙江路 1518 弄',
           type: 4,
-          email: '82738273@qq.com',
-          mg_status: true
+          email: '432123432@qq.com',
+          mg_status: true,
         },
         {
           id: 5,
           date: '2019-10-12',
-          name: '王小虎',
+          name: '杨梁',
           mobile: '17600000000',
           address: '上海市普陀区金沙江路 1518 弄',
           type: 5,
-          email: '82738273@qq.com',
-          mg_status: false
-        }
-      ]
+          email: '4321231343@qq.com',
+          mg_status: false,
+        },
+      ],
     }
+  },
+  created(){
+    this.getData();
   },
   methods: {
     // 监听 pagesize 改变事件
     handleSizeChange(val) {
-      this.pageSize = val;
+      this.pageSize = val
     },
     // 监听页码值改变的事件
     handleCurrentChange(val) {
-      this.pageIndex = val;
+      this.pageIndex = val
     },
     // 添加
     add() {
-      this.addDialogVisible = true;
+      this.addDialogVisible = true
       // console.log(this.$refs.childRef.getData)//调用子组件的属性和方法
     },
     // 编辑
     edit(item) {
       console.log(item)
       this.editForm = {
-        name:item.name,
-        pwd:item.id,
-        email:item.email,
-        mobile:item.mobile
+        name: item.name,
+        pwd: item.id,
+        email: item.email,
+        mobile: item.mobile,
       }
-      this.editDialogVisible = true;
+      this.editDialogVisible = true
     },
     // 删除
     deleted(item) {
       this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
-          });
-          this.getData();
-        }).catch(() => {
+            message: '删除成功!',
+          })
+          this.getData()
+        })
+        .catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除'
-          });          
-        });
+            message: '已取消删除',
+          })
+        })
     },
     // 当前状态改变的时候
     swichChange(item) {},
     // 获取数据
     getData() {
-      console.log('getData已执行')
+      console.log('getData已执行');
+      setTimeout(() => {
+          this.loading = false;
+        }, 2000);
     },
     // 提交校验
     addSubmitForm(formName) {
-      this.$refs.addFormRef.validate(valid => {
+      this.$refs.addFormRef.validate((valid) => {
         if (valid) {
-          this.addDialogVisible = false;
-          this.getData();
+          this.addDialogVisible = false
+          this.getData()
         }
       })
     },
     // 关闭弹窗
     addDialogClosed() {
-      this.$refs.addFormRef.resetFields();
-      this.addDialogVisible = false;
+      this.$refs.addFormRef.resetFields()
+      this.addDialogVisible = false
     },
-    
+
     // 提交校验
     editSubmitForm(formName) {
-      this.$refs.editFormRef.validate(valid => {
+      this.$refs.editFormRef.validate((valid) => {
         if (valid) {
-          this.editDialogVisible = false;
-          this.getData();
+          this.editDialogVisible = false
+          this.getData()
         }
       })
     },
     // 关闭弹窗
     editDialogClosed() {
-      this.$refs.editFormRef.resetFields();
-      this.editDialogVisible = false;
+      this.editForm = {
+        name: '',
+        email: '',
+        mobile: '',
+        pwd: '',
+      }
+      this.$refs.editFormRef.resetFields()
+      this.editDialogVisible = false
     },
-
-  }
+  },
 }
 </script>
 <style scoped>
