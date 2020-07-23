@@ -8,6 +8,7 @@
 
     <!-- 卡片视图 -->
     <el-card>
+      <!-- <child :name="name" :page="pageIndex" :onShowDialog="add" :func="getData" ref="childRef"></child> -->
       <!-- 搜索添加区域 -->
       <el-row :gutter="20">
         <el-col :span="7">
@@ -127,7 +128,9 @@
   </div>
 </template>
 <script>
+import child from '../../components/children.vue';
 export default {
+  components:{child},
   data() {
     // 校验邮箱
     var checkEmail = (rule, value, cb) => {
@@ -146,6 +149,7 @@ export default {
       cb(new Error('请输入正确的手机号'))
     }
     return {
+      name:'2',
       keyword: '',
       addForm: {
         name: '',
@@ -260,6 +264,7 @@ export default {
     // 添加
     add() {
       this.addDialogVisible = true;
+      // console.log(this.$refs.childRef.getData)//调用子组件的属性和方法
     },
     // 编辑
     edit(item) {
@@ -294,7 +299,9 @@ export default {
     // 当前状态改变的时候
     swichChange(item) {},
     // 获取数据
-    getData() {},
+    getData() {
+      console.log('getData已执行')
+    },
     // 提交校验
     addSubmitForm(formName) {
       this.$refs.addFormRef.validate(valid => {

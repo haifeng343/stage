@@ -1,13 +1,36 @@
 <template>
-  <div>
-    <el-form ref="ruleForm" :rules="ruleForm" :model="form" label-width="80px">
-      <el-form-item label="活动名称" prop="name">
-        <el-input v-model="form.name"></el-input>
-        <el-form-item label="密码" prop="pass">
-          <el-input type="password" v-model="form.pass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
-        <el-button>取消</el-button>
+  <div class="poster">
+    <el-form
+      class="login-container"
+      ref="ruleForm"
+      :rules="loginRule"
+      :model="ruleForm"
+      label-position="left"
+      label-width="0px"
+    >
+      <h3 class="login_title">系统登录</h3>
+      <el-form-item>
+        <el-input
+          type="text"
+          class="input1"
+          v-model="ruleForm.username"
+          auto-complete="off"
+          placeholder="账号"
+        ></el-input>
+      </el-form-item>
+
+      <el-form-item>
+        <el-input
+          type="password"
+          class="input1"
+          v-model="ruleForm.password"
+          auto-complete="off"
+          placeholder="密码"
+        ></el-input>
+      </el-form-item>
+
+      <el-form-item style="width: 100%">
+        <el-button type="primary" class="loginBtn" @click="onSubmit('ruleForm')">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -17,16 +40,16 @@ export default {
   name: 'login',
   data() {
     return {
-      form: {
-        name: 'admin',
-        pass: '000000'
-      },
       ruleForm: {
-        name: [
+        username: 'admin',
+        password: '000000'
+      },
+      loginRule: {
+        username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        pass: [{ required: true, message: '请输入密码', trigger: 'change' }]
+        password: [{ required: true, message: '请输入密码', trigger: 'change' }]
       }
     }
   },
@@ -36,8 +59,8 @@ export default {
         if (valid) {
           this.$http
             .post('/api/xkspc/login', {
-              user: this.form.name,
-              pwd: this.form.pass
+              user: this.ruleForm.username,
+              pwd: this.ruleForm.password
             })
             .then(res => {
               if (res.data.success == true) {
@@ -57,4 +80,56 @@ export default {
 }
 </script>
 <style scoped>
+.poster {
+  background:url("../assets/img/login-bg.jpg") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+  overflow: hidden;
+}
+body {
+  margin: 0px;
+  padding: 0;
+}
+.loginBtn {
+  width: 100%;
+  background: transparent;
+  color: #333;
+  border: 1px solid #eaeaea;
+}
+.login-container {
+  border-radius: 15px;
+  background-clip: padding-box;
+  margin: auto;
+  width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 35px 35px 15px 35px;
+  background: transparent;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 25px #cac6c6;
+  z-index: 9999;
+}
+.vedio {
+  width: 100%;
+  height: auto;
+}
+
+.el-input__inner {
+    background: transparent;
+  }
+.video-container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.login_title {
+  margin: 0px auto 40px auto;
+  text-align: center;
+  color: #505458;
+}
 </style>

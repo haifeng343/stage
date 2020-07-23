@@ -6,9 +6,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router';
 import axios from 'axios';
-import less from 'less'
 import './assets/css/global.css';
-Vue.use(less)
 
 
 Vue.use(ElementUI)
