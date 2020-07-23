@@ -10,7 +10,7 @@
     <el-card>
       <!-- <child :name="name" :page="pageIndex" :onShowDialog="add" :func="getData" ref="childRef"></child> -->
       <!-- 搜索添加区域 -->
-      <el-row :gutter="20">
+      <el-row :gutter="20"> 
         <el-col :span="7">
           <el-input
             placeholder="请输入内容"
