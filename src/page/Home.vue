@@ -102,13 +102,13 @@ export default {
       editPtdDialogVisible: false, //修改密码弹出框
       pwdForm: {
         //密码修改
-        pwd: ''
+        pwd: '',
       },
       pwdRules: {
         pwd: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 8, message: '长度在 6 到 8 个字符', trigger: 'blur' }
-        ]
+          { min: 6, max: 8, message: '长度在 6 到 8 个字符', trigger: 'blur' },
+        ],
       },
       menuList: [
         {
@@ -116,8 +116,8 @@ export default {
           autoName: '用户管理',
           path: null,
           children: [
-            { id: 201, autoName: '用户列表', path: 'users', children: [] }
-          ]
+            { id: 201, autoName: '用户列表', path: 'users', children: [] },
+          ],
         },
         {
           id: 102,
@@ -125,8 +125,8 @@ export default {
           path: null,
           children: [
             { id: 202, autoName: '角色列表', path: 'roles', children: [] },
-            { id: 302, autoName: '权限列表', path: 'authority', children: [] }
-          ]
+            { id: 302, autoName: '权限列表', path: 'authority', children: [] },
+          ],
         },
         {
           id: 104,
@@ -135,8 +135,13 @@ export default {
           children: [
             { id: 204, autoName: '商品列表', path: 'productLst', children: [] },
             { id: 304, autoName: '分类参数', path: 'sort', children: [] },
-            { id: 404, autoName: '商品分类', path: 'productSort', children: [] }
-          ]
+            {
+              id: 404,
+              autoName: '商品分类',
+              path: 'productSort',
+              children: [],
+            },
+          ],
         },
         {
           id: 105,
@@ -144,27 +149,27 @@ export default {
           path: null,
           children: [
             { id: 205, autoName: '订单列表', path: 'orderList', children: [] },
-            { id: 305, autoName: '订单日志', path: 'orderLog', children: [] }
-          ]
+            { id: 305, autoName: '订单日志', path: 'orderLog', children: [] },
+          ],
         },
         {
           id: 106,
           autoName: '数据统计',
           path: null,
           children: [
-            { id: 206, autoName: '数据列表', path: null, children: [] }
-          ]
-        }
+            { id: 206, autoName: '数据列表', path: null, children: [] },
+          ],
+        },
       ],
       icons: {
         '101': 'el-icon-s-custom',
         '102': 'el-icon-lock',
         '104': 'el-icon-s-goods',
         '105': 'el-icon-s-order',
-        '106': 'el-icon-s-platform'
+        '106': 'el-icon-s-platform',
       },
       collapse: false, //默认展开
-      menuWidth: '200px' //菜单栏宽度
+      menuWidth: '200px', //菜单栏宽度
     }
   },
   created() {
@@ -188,8 +193,8 @@ export default {
     },
     // 保存链接的激活状态
     saveNavState(activePath) {
-      window.sessionStorage.setItem('activePath', activePath);
-      this.activePath = activePath;
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     },
     // 获取所有的菜单
     // async getmenuList() {
@@ -197,22 +202,22 @@ export default {
     // },
     // 显示密码弹窗框
     showPwd() {
-      this.editPtdDialogVisible = true;
+      this.editPtdDialogVisible = true
     },
     // 关闭密码修改弹出框
     closed() {
-      this.editPtdDialogVisible = false;
-      this.$refs.pwdForm.resetFields();
+      this.editPtdDialogVisible = false
+      this.$refs.pwdForm.resetFields()
     },
     // 修改密码
     editPwd() {
-      this.editPtdDialogVisible = false;
-      this.$refs.pwdForm.resetFields();
+      this.editPtdDialogVisible = false
+      this.$refs.pwdForm.resetFields()
     },
-    editUserInfo(){
+    editUserInfo() {
       this.$router.push('/userinfo')
     },
-  }
+  },
 }
 </script>
 <style scoped lang="less">
@@ -229,9 +234,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  .ft22{
-    font-size: 20px;
-  }
+}
+.ft22 {
+  font-size: 20px;
 }
 .el-menu {
   border: none;
@@ -245,30 +250,28 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .title {
-    font-size: 22px;
-    color: #fff;
-    // -webkit-line-clamp: 2;    
-    //  background-image: -webkit-linear-gradient(bottom, #ffb6ad, #50403a);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
-  }
-  .header-right {
-    margin-right: 0px;
-    .el-submenu {
-      background: #373d41;
-    }
-    .el-submenu {
-      .el-menu-item {
-        text-align: center;
-      }
-    }
-    .avator {
-      width: 40px;
-      height: 40px;
-      border-radius: 100%;
-    }
-  }
+}
+.header-right {
+  margin-right: 0px;
+}
+.el-submenu {
+  background: #373d41;
+}
+.header-right .el-submenu .el-submenu .el-menu-item {
+  text-align: center;
+}
+.avator {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+.title {
+  font-size: 22px;
+  color: #fff;
+  /* -webkit-line-clamp: 2;    
+      background-image: -webkit-linear-gradient(bottom, #ffb6ad, #50403a);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent; */
 }
 .el-aside {
   background: #333744;

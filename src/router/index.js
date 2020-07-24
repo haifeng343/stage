@@ -31,14 +31,12 @@ const router = new Router({
         {
           path:'/users',
           component:Users
-        },
-        {
-          path:'/roles',
-          component:Roles
-        },
-        {
+        },{
           path:'/userinfo',
           component:UserInfo
+        },{
+          path:'/roles',
+          component:Roles
         }
       ]
     }
