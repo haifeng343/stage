@@ -94,7 +94,7 @@ export default {
 </script>
 <style scoped>
 .poster {
-  background: url('../assets/img/login-bg.jpg') no-repeat;
+  background: url('../assets/img/login-bg.jpeg') no-repeat;
   background-position: center;
   height: 100%;
   width: 100%;
