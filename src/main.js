@@ -10,6 +10,7 @@ import './assets/css/global.css';
 
 Vue.use(ElementUI)
 
+
 // 指定请求地址
 axios.defaults.baseURL = 'https://api.ybrshop.com';
 // 拦截器,保证拥有获取数据的权限
