@@ -94,7 +94,8 @@ export default {
 </script>
 <style scoped>
 .poster {
-  background: url('../assets/img/login-bg.jpeg') no-repeat;
+  /* background: url('../assets/img/login-bg.jpeg') no-repeat; */
+  background:linear-gradient(to right, #bb313e25, #bb313e25, #d7222925, #dd4a1625, #e4761525, #f5c50025, #f0e92725, #b1ce2425, #48a93525, #03944525, #157c4f25, #176a5825, #1b556325, #1d386f25, #1d386f25, #20277825, #52266325, #8a244b25);
   background-position: center;
   height: 100%;
   width: 100%;
@@ -108,8 +109,8 @@ body {
 }
 .loginBtn {
   width: 100%;
-  background: transparent;
-  color: #fff;
+  background: #eaeaea;
+  color: #000;
   border: 1px solid #eaeaea;
 }
 .login-container {
@@ -122,7 +123,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 35px 35px 15px 35px;
-  background: transparent;
+  background: #fff;
   border: 1px solid #eaeaea;
   box-shadow: 0 0 25px #cac6c6;
   z-index: 9999;
@@ -138,11 +139,11 @@ body {
 
 .input1 .el-input__inner {
     background: transparent;
-    color: #ffffff;
+    color: #505458;
 }
 .input1 input:-internal-autofill-previewed,
 .input1 input:-internal-autofill-selected {
-    -webkit-text-fill-color: #fff;
+    -webkit-text-fill-color: #505458;
     transition: background-color 5000s ease-out 0.5s;
 }
 </style>

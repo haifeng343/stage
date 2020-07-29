@@ -6,6 +6,7 @@ import Welcome from '../page/Welcome.vue';
 import Users from '../page/user/Users.vue';
 import UserInfo from '../page/user/userinfo.vue';
 import Roles from '../page/role/Roles.vue';
+import Authority from '../page/role/Authority.vue';
 
 Vue.use(Router)
 const originalPush = Router.prototype.push
@@ -40,6 +41,9 @@ const router = new Router({
         },{
           path:'/roles',
           component:Roles
+        },{
+          path:'/authority',
+          component:Authority
         }
       ]
     }

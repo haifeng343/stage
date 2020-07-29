@@ -16,6 +16,7 @@
             placeholder="请输入内容"
             v-model="keyword"
             clearable
+            ref="mark"
             @clear="getData"
             class="input-with-select"
           >
@@ -30,7 +31,7 @@
       <!-- 数据表格 -->
       <el-table
         :data="tableData"
-        height="600"
+        height="700"
         border
         stripe
         v-loading="loading"
@@ -323,7 +324,6 @@ export default {
     swichChange(item) {},
     // 获取数据
     getData() {
-      console.log('getData已执行');
       setTimeout(() => {
           this.loading = false;
         }, 1000);

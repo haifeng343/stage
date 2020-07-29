@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header class="header">
       <!-- <img :src="img" alt srcset /> -->
-      <span class="title">后台管理系统</span>
+      <span class="title" @click="goHome">后台管理系统</span>
       <div class="header-right">
         <el-menu
           :collapse-transition="true"
@@ -87,9 +87,7 @@
       </el-aside>
       <!-- 右侧主体 -->
       <el-main>
-        <transition name="el-zoom-in-center">
-          <router-view></router-view>
-        </transition>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -177,6 +175,10 @@ export default {
     this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
+    // 回到首页
+    goHome(){
+      this.$router.push('/home');
+    },
     // 退出登录
     loginOut() {
       window.sessionStorage.clear()
@@ -268,6 +270,7 @@ export default {
 .title {
   font-size: 22px;
   color: #fff;
+  cursor: pointer;
   /* -webkit-line-clamp: 2;    
       background-image: -webkit-linear-gradient(bottom, #ffb6ad, #50403a);
      -webkit-background-clip: text;
