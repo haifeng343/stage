@@ -92,6 +92,13 @@ export default {
       }
     },
   },
+  beforeMount(){
+    let that = this;
+ document.removeEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    })
+  },
   mounted() {
     let oUl = document.getElementById('ul1')
     let arr = []
@@ -101,23 +108,44 @@ export default {
     console.log(oUl)
     oUl.innerHTML = arr.join(' ')
     const that = this
+    document.removeEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    })
     document.addEventListener('mousedown', function (e) {
       that.move1(e)
       e.preventDefault()
     })
-    document.addEventListener('mousedown', that.moveTo, true)
+    // document.addEventListener('mousedown', that.moveTo, true)
   },
-  watch: {
-      $route: {
-    handler: function(val, oldVal){
-      console.log(val);
-    },
-    // 深度观察监听
-    deep: true
-  }
+  beforeDestroy(){
+    document.removeEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    })
+  },
+  // 在keep-alive组件激活时调用。
+  activiated(){
+    document.addEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    })
+  },  
+  // keep-alive组件停用时调用。
+  deactivated(){
+     document.removeEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    })
   },
   destroyed() {
-    console.log(2222)
+    console.log(11111111111111)
+    let that = this;
+     document.removeEventListener('mousedown', function (e) {
+      that.move1(e)
+      e.preventDefault()
+    },true)
+    document.removeEventListener('mousedown', that.moveTo, true)
   },
   updated() {},
 }

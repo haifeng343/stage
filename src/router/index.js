@@ -1,12 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '../page/Login.vue';
-import Home from '../page/Home.vue';
-import Welcome from '../page/Welcome.vue';
-import Users from '../page/user/Users.vue';
-import UserInfo from '../page/user/userinfo.vue';
-import Roles from '../page/role/Roles.vue';
-import Authority from '../page/role/Authority.vue';
 
 Vue.use(Router)
 const originalPush = Router.prototype.push
@@ -21,29 +14,36 @@ const router = new Router({
     },
     {
       path: '/login',
-      component: Login
+      component: ()=>import('../page/Login.vue'),
+      name:'login',
     },
     {
       path: '/home',
-      component: Home,
+      component: ()=>import('../page/Home.vue'),
+      name:'home',
       redirect:'/welcome',
       children:[
         {
           path:'/welcome',
-          component:Welcome
+          component:()=>import('../page/Welcome.vue'),
+          name:'welcome'
         },
         {
           path:'/users',
-          component:Users
+          component:()=>import('../page/user/Users.vue'),
+          name:'users',
         },{
           path:'/userinfo',
-          component:UserInfo
+          component:()=>import('../page/user/userinfo.vue'),
+          name:'userinfo'
         },{
           path:'/roles',
-          component:Roles
+          component:()=>import('../page/role/Roles.vue'),
+          name:'roles',
         },{
           path:'/authority',
-          component:Authority
+          component:()=>import('../page/role/Authority.vue'),
+          name:'authority'
         }
       ]
     }
